@@ -1,0 +1,123 @@
+package sortingInJava;
+
+public class CustomisedMergeSort {
+	/*
+	 * maxListElement is the variable which stores the element with the maximum value in the list
+	 */
+	private int maxListElement;
+	/*
+	 * constructor for CustomisedMergeSort
+	 * @param inputArrayToBeSorted is the array to be sorted
+	 */
+	public CustomisedMergeSort(int[] inputArrayToBeSorted) {
+		maxListElement = inputArrayToBeSorted[0];
+		for(int i = 0; i < inputArrayToBeSorted.length; i++) {
+			if(inputArrayToBeSorted[i] >= maxListElement) {
+				maxListElement = inputArrayToBeSorted[i];
+			}
+		}
+		mergeSort(inputArrayToBeSorted, 0, inputArrayToBeSorted.length - 1);
+	}
+	/*
+	 * @param originalArray stores the original unsorted array
+	 * @param firstIndex stores the first element index of the unsorted array
+	 * @param lastIndex stores the last index of the unsorted array
+	 * function to do merge sort by divide and conquer
+	 */
+	public void mergeSort(int[] originalArray, int firstIndex, int lastIndex) {
+		/*
+		 * midIndex stores the mid value of the array index-wise
+		 */
+		int midIndex = 0;
+		if(firstIndex < lastIndex) {
+			midIndex = (int)Math.floor((firstIndex + lastIndex)/2);
+			mergeSort(originalArray, firstIndex, midIndex);
+			mergeSort(originalArray, midIndex + 1, lastIndex);
+			merge(originalArray, firstIndex, midIndex, midIndex+1, lastIndex);
+		}
+	}
+	/* function to merge two lists into a single sorted list
+	 * @param originalArray is the array from where its parts are being done
+	 * @param startingIndexOfFirstList is the starting index of the first list
+	 * @param endingIndexOfFirstList is the ending index of the first list
+	 * 
+	 */
+	private void merge(int[] originalArray, int startingIndexOfFirstList, int endingIndexOfFirstList, int startingIndexOfSecondList, int endingIndexOfSecondList) {
+		/*
+		 * lengthOfFirstList stores the length of the first list
+		 */
+		int lengthOfFirstList = endingIndexOfFirstList - startingIndexOfFirstList + 1;
+		/*
+		 * lengthOfSecondList stores the length of the second list
+		 */
+		int lengthOfSecondList = endingIndexOfSecondList - startingIndexOfSecondList + 1;
+		/*
+		 * arrayFirst stores the first list of array
+		 */
+		int[] arrayFirst = new int[lengthOfFirstList+1];
+		/*
+		 * arraySecond stores the second list of array
+		 */
+		int[] arraySecond = new int[lengthOfSecondList+1];
+		/*
+		 * pointerForArrayOne is the pointer which points to indexes of arrayOne
+		 */
+		int pointerForArrayOne = 0;
+		/*
+		 * copying elements into arrayOne
+		 */
+		 for(int i = startingIndexOfFirstList; i <= endingIndexOfFirstList; i++) {
+			 arrayFirst[pointerForArrayOne++] = originalArray[i];
+		 }
+		 /*
+	      * pointerForArrayTwo is the pointer which points to indexes of arrayTwo
+		  */
+		int pointerForArrayTwo = 0;
+		/*
+		 * copying elements into arrayTwo
+		 */
+		for(int i = startingIndexOfSecondList; i <= endingIndexOfSecondList; i++) {
+			arraySecond[pointerForArrayTwo++] = originalArray[i];
+		}
+		/*
+		 * adding maxListElement+1 at the end of each list
+		 */
+		arrayFirst[pointerForArrayOne] = maxListElement + 1;
+		arraySecond[pointerForArrayTwo] = maxListElement + 1;
+		/*
+		 * bringing the pointers of the both the lists to zeroth index
+		 */
+		pointerForArrayOne = 0;
+		pointerForArrayTwo = 0;
+		/*
+		 * merging the two lists into a sorted list
+		 */
+		for(int i = startingIndexOfFirstList; i <= endingIndexOfSecondList; i++) {
+			if(arrayFirst[pointerForArrayOne] <= arraySecond[pointerForArrayTwo]) {
+				originalArray[i] = arrayFirst[pointerForArrayOne++];
+			}
+			else {
+				originalArray[i] = arraySecond[pointerForArrayTwo++];
+			}
+		}
+	}
+	
+	public static void main(String[] args) {
+		int[] sampleArray = { 78, 20};
+		/*
+		 * originally array in unsorted order
+		 */
+		System.out.println("array in unsorted order");
+		for(int i = 0; i < sampleArray.length; i++) {
+			System.out.println(sampleArray[i]);
+		}
+		/*
+		 * array in sorted order
+		 */
+		System.out.println("array in sorted order");
+		new CustomisedMergeSort(sampleArray);
+		for(int i = 0; i < sampleArray.length; i++) {
+			System.out.println(sampleArray[i]);
+		}
+	}
+}

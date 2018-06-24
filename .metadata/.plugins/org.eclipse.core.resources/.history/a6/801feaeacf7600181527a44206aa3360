@@ -1,0 +1,32 @@
+package sortingInJava;
+
+public class CustomisedMergeSort {
+	/*
+	 * maxListElement is the variable which stores the maximum element in the list
+	 */
+	private int maxListElement;
+	/*
+	 * @param originalArray stores the original unsorted array
+	 * @param firstIndex stores the first element index of the unsorted array
+	 * @param lastIndex stores the last index of the unsorted array
+	 * function to do merge sort by divide and conquer
+	 */
+	public void mergeSort(int[] originalArray, int firstIndex, int lastIndex) {
+		int midIndex = 0;
+		if(firstIndex < lastIndex) {
+			midIndex = (int)Math.floor((firstIndex + lastIndex)/2);
+			mergeSort(originalArray, firstIndex, midIndex);
+			mergeSort(originalArray, midIndex + 1, lastIndex);
+			
+		}
+	}
+	/* function to merge two lists in ascending order
+	 * 
+	 * 
+	 */
+	private void merge(int[] originalArray, int startingIndexOfFirstList, int endingIndexOfFirstList, int startingIndexOfSecondList, int endingIndexOfSecondList) {
+		int lengthOfFirstList = endingIndexOfFirstList - startingIndexOfFirstList + 1;
+		int lengthOfSecondList = endingIndexOfSecondList - startingIndexOfSecondList + 1;
+		
+	}
+}
