@@ -1,0 +1,52 @@
+package backtrackingAlgorithmsInJava;
+
+public class sumOfSubsetProblems {
+	/*
+	 * stores the array of elements from which the subset operation is to be performed.
+	 */
+	int[] subSetMatrix;
+	/*
+	 * stores whether an element of the subSetMatrix is to  be taken or not by putting "0" for not taken and "1" for taken at the respective indexes corresponding to the subSetMatrix
+	 */
+	int[] selectionMatrix;
+
+public static void main(String[] args) {
+	
+	sumOfSubsetProblems n = new sumOfSubsetProblems();
+	n.subSetMatrix = new int[]{2, 4, 6, 8};
+	n.selectionMatrix = new int[n.subSetMatrix.length];
+	n.find(10, 0, 0);
+	
+    
+}
+	void find(int sum, int currentSum, int index) {
+		if(currentSum == sum) {
+			for(int i = 0; i < subSetMatrix.length; i++) {
+				if(selectionMatrix[i] == 1) {
+					System.out.print(subSetMatrix[i] + "   ");
+				}
+			}
+			System.out.println();
+		}
+		if(currentSum > sum) {
+			for(int i = 0; i < subSetMatrix.length; i++) {
+				if(selectionMatrix[i] == 1) {
+					System.out.print(subSetMatrix[i] + "   ");
+				}
+			}
+			System.out.println();
+			return;
+		}
+		if(index == subSetMatrix.length) {
+			return;
+		}
+		else {currentSum += subSetMatrix[index]; 
+			selectionMatrix[index] = 1;
+			find(sum, currentSum, index+1);
+			currentSum -= subSetMatrix[index];
+			selectionMatrix[index] = 0;
+			find(sum, currentSum, index+1);
+		}
+		return;
+	}
+}
