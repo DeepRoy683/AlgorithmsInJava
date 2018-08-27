@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename compilation unit &apos;backtrackingAlgorithmsInJava.Davis_Starircase.java&apos; to &apos;Davis_Staircase.java&apos;&#x0A;- Original project: &apos;algorithmsInJava&apos;&#x0A;- Original element: &apos;backtrackingAlgorithmsInJava.Davis_Starircase.java&apos;&#x0A;- Renamed element: &apos;backtrackingAlgorithmsInJava.Davis_Staircase.java&apos;" description="Rename compilation unit &apos;Davis_Starircase.java&apos;" flags="2" id="org.eclipse.jdt.ui.rename.compilationunit" input="/src&lt;backtrackingAlgorithmsInJava{Davis_Starircase.java" name="Davis_Staircase.java" references="false" stamp="1535371037889" version="1.0"/>
+</session>
